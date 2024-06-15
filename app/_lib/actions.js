@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { signIn, signOut, auth } from "./auth";
 import { supabase } from "./supabase";
 import { getBookings } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function updateGuest(formData) {
   // authentication part 🔒
@@ -29,10 +30,11 @@ export async function updateGuest(formData) {
 }
 
 export async function deleteReservation(bookingId) {
+  // authentication part 🔒
   const session = await auth();
   if (!session) throw new Error("You must be logged in");
 
-  // Server side 
+  // Server side
   const guestBookings = await getBookings(session.user.guestId);
   const guestsBookingIds = guestBookings.map((booking) => booking.id);
 
@@ -47,6 +49,51 @@ export async function deleteReservation(bookingId) {
   if (error) throw new Error("Guest could not be deleted");
 
   revalidatePath("/account/profile");
+}
+export async function updateBooking(formData) {
+  const bookingId = Number(formData.get("reservationId"));
+
+
+  // authentication part 🔒
+  const session = await auth();
+  if (!session) throw new Error("You must be logged in");
+
+  // Authorization 
+  const guestBookings = await getBookings(session.user.guestId);
+  const guestsBookingIds = guestBookings.map((booking) => booking.id);
+
+  if (!guestsBookingIds.includes(bookingId))
+    throw new Error("You can only delete your own bookings");
+
+
+  // Building update Data
+  const updateData = {
+    numGuests: Number(formData.get("numGuests")),
+    observations: formData.get("observations").slice(0, 1000),
+  };
+
+
+  // Here is the Mutation Proper 🪄🔮
+  const { error } = await supabase
+    .from("bookings")
+    .update(updateData)
+    .eq("id", bookingId)
+    .select()
+    .single();
+
+  // Error Handling
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
+
+  // Revalidation
+  revalidatePath(`/account/reservations/edit/${bookingId}`)
+  revalidatePath("/account/reservations")
+
+  // Redirecting 🚸🚦
+  redirect("/account/reservations");
+
 }
 
 export async function signInAction() {
