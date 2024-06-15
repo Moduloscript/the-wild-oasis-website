@@ -1,5 +1,6 @@
 import { getBooking, getCabin } from "@/app/_lib/data-service";
 import { updateBooking } from "../../../../_lib/actions";
+import SubmitButton from "@/app/_components/SubmitButton";
 
 export default async function Page({ params }) {
   const { reservationId } = params;
@@ -21,9 +22,8 @@ export default async function Page({ params }) {
       <form
         action={updateBooking}
         className='flex flex-col gap-6 px-12 py-8 text-lg bg-primary-900'>
-
         <input type='hidden' name='reservationId' value={reservationId} />
-        
+
         <div className='space-y-2'>
           <label htmlFor='numGuests'>How many guests?</label>
           <select
@@ -55,9 +55,9 @@ export default async function Page({ params }) {
         </div>
 
         <div className='flex items-center justify-end gap-6'>
-          <button className='px-8 py-4 font-semibold transition-all bg-accent-500 text-primary-800 hover:bg-accent-600 disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300'>
-            Update reservation
-          </button>
+          <SubmitButton pendingLabel={"Updating..."}>
+            Update Profile
+          </SubmitButton>
         </div>
       </form>
     </div>
