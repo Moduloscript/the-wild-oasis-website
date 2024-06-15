@@ -1,7 +1,7 @@
 "use client";
 
 import { updateGuest } from "../_lib/actions";
-import {SubmitButton} from "@/"
+import SubmitButton from "@/app/_components/SubmitButton"
 function UpdateProfileForm({ children, guest }) {
   const { fullName, email, nationality, nationalID, countryFlag } = guest;
 
