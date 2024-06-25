@@ -1,10 +1,8 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
 
-export default async function Navigation() {
+async function LinksNavigatorDesktop() {
   const session = await auth();
-
-  console.log(session);
 
   return (
     <nav className='z-10 text-xl'>
@@ -48,3 +46,5 @@ export default async function Navigation() {
     </nav>
   );
 }
+
+export default LinksNavigatorDesktop;
