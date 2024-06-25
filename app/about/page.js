@@ -41,7 +41,7 @@ export default async function Page() {
         </div>
       </div>
 
-      <div className='col-span-3  sm:col-span-2'>
+      <div className='col-span-3 sm:col-span-2'>
         <Image
           src={image1}
           alt='Family sitting around a fire pit in front of cabin'
@@ -50,27 +50,27 @@ export default async function Page() {
         />
       </div>
 
-      <div className='col-span-5 items-center'>
+      <div className='col-span-5 items-center '>
         <h1 className='text-4xl mb-10 text-accent-400 font-medium'>
           Managed by our family since 1962
         </h1>
 
-        <div className='space-y-8'>
-          <p>
+        <div className='space-y-8 items-center'>
+          <p className='mr-10 leading-6 align-middle'>
             Since 1962, The Wild Oasis has been a cherished family-run retreat.
             Started by our grandparents, this haven has been nurtured with love
             and care, passing down through our family as a testament to our
             dedication to creating a warm, welcoming environment.
           </p>
-          <div className='col-span-5 aspect-square relative'>
+          <div className='col-span-5 aspect-square relative w-[320px] md:w-screen'>
             <Image
               src='/about-2.jpg'
               alt='Family that manages The Wild Oasis'
-              className='object-cover'
+              className='object-cover '
               fill
             />
           </div>
-          <p>
+          <p className="mr-5 leading-6 align-middle">
             Over the years, we&apos;ve maintained the essence of The Wild Oasis,
             blending the timeless beauty of the mountains with the personal
             touch only a family business can offer. Here, you&apos;re not just a
