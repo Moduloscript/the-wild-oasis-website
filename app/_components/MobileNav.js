@@ -21,10 +21,6 @@ export default function MobileNav() {
         <SheetDescription>
           <LinksNavigatorMobile />
         </SheetDescription>
-
-
-        
-
       </SheetContent>
     </Sheet>
   );

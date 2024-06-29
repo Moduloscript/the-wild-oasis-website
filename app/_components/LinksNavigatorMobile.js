@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth } from "../_lib/auth";
+import { Separator } from "./ui/separator";
 
 async function LinksNavigatorMobile() {
   const session = await auth();
