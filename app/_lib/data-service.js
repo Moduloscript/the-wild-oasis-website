@@ -11,9 +11,7 @@ export async function getCabin(id) {
     .eq("id", id)
     .single();
 
-  // For testing
-  // await new Promise((res) => setTimeout(res, 1000));
-
+  
   if (error) {
     console.error(error);
     notFound()
@@ -42,8 +40,7 @@ export const getCabins = async function () {
     .select("id, name, maxCapacity, regularPrice, discount, image")
     .order("name");
 
-  // For testing
-  // await new Promise((res) => setTimeout(res, 2000));
+ 
 
   if (error) {
     console.error(error);

@@ -12,7 +12,7 @@ export default async function Page() {
   const bookings = await getBookings(session.user.guestId);
   return (
     <div>
-      <h2 className='font-semibold text-2xl text-accent-400 mb-7'>
+      <h2 className='text-2xl font-semibold text-accent-400 mb-7'>
         Your reservations
       </h2>
 

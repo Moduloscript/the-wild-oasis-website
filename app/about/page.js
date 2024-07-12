@@ -47,6 +47,7 @@ export default async function Page() {
           alt='Family sitting around a fire pit in front of cabin'
           placeholder='blur'
           quality={80}
+          className="w-full"
         />
       </div>
 
